@@ -14,6 +14,7 @@ $vm = Get-AzureRmVM -Name $vmName -ResourceGroupName $ressourceGroup.ResourceGro
 Start-AzureRmVM -Name $vm.Name -ResourceGroupName $ressourceGroup.ResourceGroupName 
 
 "Getting Public IP Adress"
+# IP must be standard named [VM name + "-ip"]
 $nicName = $vm.Name + "-ip"
 $VmIp = ((Get-AzureRmPublicIpAddress -ResourceGroupName $ressourceGroup.ResourceGroupName) | Where-Object {$_.Name -eq $nicName}).IpAddress
 
