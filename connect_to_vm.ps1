@@ -1,4 +1,7 @@
-﻿param([string] $user = "", 
+#Requires -Version 6.0
+#Requires -Modules AzureRM.Netcore
+
+param([string] $user = "", 
       [string] $promptCred = "0",
       [string] $adminSession = "1",
       [string] $vmName = "WorkMachine",
@@ -30,4 +33,3 @@ open $tmpfile
 }
 Start-Sleep -Seconds 5
 Remove-Item $tmpfile
-
