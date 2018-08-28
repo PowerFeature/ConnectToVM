@@ -8,13 +8,18 @@ param([string] $user = "",
       [string] $resourceGroupName = "Dev_do_not_delete"
 )
 "Connecting to Ressource Group..."
+$AzureAcount = Get-AzureRmContext
+if (-Not $AzureAcount) {
+"Login Needed"
+Connect-AzureRmAccount 
+}
+
 $ressourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName
 "Starting VM..."
 $vm = Get-AzureRmVM -Name $vmName -ResourceGroupName $ressourceGroup.ResourceGroupName
 Start-AzureRmVM -Name $vm.Name -ResourceGroupName $ressourceGroup.ResourceGroupName 
 
 "Getting Public IP Adress"
-# IP must be standard named [VM name + "-ip"]
 $nicName = $vm.Name + "-ip"
 $VmIp = ((Get-AzureRmPublicIpAddress -ResourceGroupName $ressourceGroup.ResourceGroupName) | Where-Object {$_.Name -eq $nicName}).IpAddress
 
@@ -34,3 +39,4 @@ open $tmpfile
 }
 Start-Sleep -Seconds 5
 Remove-Item $tmpfile
+
