@@ -1,20 +1,26 @@
 #Requires -Version 6.0
 #Requires -Modules AzureRM.Netcore
 
-param([string] $user = "", 
+param([string] $user = "jens", 
       [string] $promptCred = "0",
       [string] $adminSession = "1",
       [string] $vmName = "WorkMachine",
       [string] $resourceGroupName = "Dev_do_not_delete"
 )
 "Connecting to Ressource Group..."
-$AzureAcount = Get-AzureRmContext
-if (-Not $AzureAcount) {
-"Login Needed"
-Connect-AzureRmAccount 
-}
 
+
+$AzureAcount = Get-AzureRmContext
+Try {
+$ressourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction Stop
+}
+Catch {
+# Account not connected
+
+"Login Needed"
+Connect-AzureRmAccount
 $ressourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName
+}
 "Starting VM..."
 $vm = Get-AzureRmVM -Name $vmName -ResourceGroupName $ressourceGroup.ResourceGroupName
 Start-AzureRmVM -Name $vm.Name -ResourceGroupName $ressourceGroup.ResourceGroupName 
@@ -39,4 +45,3 @@ open $tmpfile
 }
 Start-Sleep -Seconds 5
 Remove-Item $tmpfile
-
