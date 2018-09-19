@@ -1,11 +1,11 @@
 #Requires -Version 6.0
 #Requires -Modules AzureRM.Netcore
 
-param([string] $user = "jens", 
+param([string] $user = "[Inster Username here]", 
       [string] $promptCred = "0",
       [string] $adminSession = "1",
-      [string] $vmName = "WorkMachine",
-      [string] $resourceGroupName = "Dev_do_not_delete"
+      [string] $vmName = "[Insert VM name here]",
+      [string] $resourceGroupName = "[Insert Ressource Group Name here]"
 )
 "Connecting to Ressource Group..."
 
