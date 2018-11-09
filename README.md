@@ -1,5 +1,5 @@
 # ConnectToVM
-This Powershell Scrip is for those who have a Desktop VM Running in Azure. It finds the VM Starts It and Open an RDP connection when ready. 
+This Powershell Script is for those who have a Desktop VM/Linux SSH Server Running in Azure. It finds the VM Starts It and Open an RDP/SSH connection when ready. 
 
 #How to:
 
