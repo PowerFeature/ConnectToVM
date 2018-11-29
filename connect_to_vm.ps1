@@ -1,7 +1,7 @@
 #Requires -Version 6.0
 #Requires -Modules AzureRM.Netcore
 
-param([string] $user = "[Inster Username here]", 
+param([string] $user = "[Insert Username here]", 
       [string] $promptCred = "0",
       [string] $adminSession = "1",
       [string] $vmName = "[Insert VM name here]",
