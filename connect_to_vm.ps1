@@ -60,9 +60,8 @@ $nsg | Add-AzNetworkSecurityRuleConfig -Name $rulename -Description "Allow RDP" 
     -DestinationAddressPrefix * -DestinationPortRange $port > $null
 "Updating NSG"
 $nsg | Set-AzNetworkSecurityGroup
-
-
-
+"Waiting 20 seconds for NSG to update..."
+Start-Sleep -Seconds 20
 If ($connectionMethod -eq 'rdp') {
 # Create an rdp file
 "Creating RDP file"
@@ -81,7 +80,7 @@ Else {
 }
 Start-Sleep -Seconds 5
 "Cleaning Up ..."
-#Remove-Item $tmpfile      
+Remove-Item $tmpfile      
 }
 Else {
       ssh ($user + "@" + $VmIp) 
